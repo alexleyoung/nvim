@@ -36,3 +36,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- map leader+w to save current file in normal mode
 vim.keymap.set('n', '<Leader>w', ':write<CR>', { noremap = true, silent = true })
+
+-- recenter on C-d and C-u
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- dev keymaps
+vim.keymap.set('n', '<Leader>xf', '<cmd>source %<CR>')
+vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
+vim.keymap.set('v', '<Leader>x', ':lua<CR>')

@@ -17,3 +17,12 @@ require('lazy').setup {
   { import = 'plugins.utils' },
   { import = 'plugins.misc' },
 }
+
+-- load theme
+local theme_file = vim.fn.stdpath 'config' .. '/theme.txt'
+if vim.fn.filereadable(theme_file) == 1 then
+  local theme = vim.fn.readfile(theme_file)[1]
+  if theme then
+    vim.cmd('colorscheme ' .. theme)
+  end
+end

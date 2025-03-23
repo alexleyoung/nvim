@@ -54,7 +54,61 @@ return {
       --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
       --   },
       -- },
-      -- pickers = {}
+      vimgrep_arguments = {
+        'rg',
+        '--follow', -- Follow symbolic links
+        '--hidden', -- Search for hidden files
+        '--no-heading', -- Don't group matches by each file
+        '--with-filename', -- Print the file path with the matched lines
+        '--line-number', -- Show line numbers
+        '--column', -- Show column numbers
+        '--smart-case', -- Smart case search
+
+        -- Exclude some patterns from search
+        '--glob=!**/.git/*',
+        '--glob=!**/.idea/*',
+        '--glob=!**/.vscode/*',
+        '--glob=!**/build/*',
+        '--glob=!**/dist/*',
+        '--glob=!**/yarn.lock',
+        '--glob=!**/package-lock.json',
+        '--glob=!**/node_modules/*',
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+          -- needed to exclude some files & dirs from general search
+          -- when not included or specified in .gitignore
+          find_command = {
+            'rg',
+            '--files',
+            '--hidden',
+            '--glob=!**/.git/*',
+            '--glob=!**/.idea/*',
+            '--glob=!**/.vscode/*',
+            '--glob=!**/build/*',
+            '--glob=!**/dist/*',
+            '--glob=!**/yarn.lock',
+            '--glob=!**/package-lock.json',
+            '--glob=!**/node_modules/*',
+          },
+        },
+        colorscheme = {
+          enable_preview = true,
+          attach_mappings = function(prompt_bufnr, map)
+            map('i', '<CR>', function()
+              local selection = require('telescope.actions.state').get_selected_entry()
+              require('telescope.actions').close(prompt_bufnr)
+
+              local theme = selection.value
+              vim.cmd('colorscheme ' .. theme)
+
+              vim.fn.writefile({ theme }, vim.fn.stdpath 'config' .. '/theme.txt')
+            end)
+            return true
+          end,
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -78,13 +132,15 @@ return {
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = '[S]earch Recent Files ("o" bc vscode)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    -- theme selection
+    vim.keymap.set('n', '<leader>st', ':Telescope colorscheme<CR>', { desc = '[S]earch [T]hemes', noremap = true, silent = true })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         winblend = 10,
-        previewer = false,
+        previewer = true,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
 
