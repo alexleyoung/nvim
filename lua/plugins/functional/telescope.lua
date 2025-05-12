@@ -119,6 +119,7 @@ return {
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+    pcall(require('telescope').load_extension 'flutter')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
@@ -134,6 +135,8 @@ return {
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     -- theme selection
     vim.keymap.set('n', '<leader>st', ':Telescope colorscheme<CR>', { desc = '[S]earch [T]hemes', noremap = true, silent = true })
+    -- flutter
+    vim.keymap.set('n', '<leader>fc', ':Telescope flutter commands<CR>', { desc = '[F]earch [C]ommands', noremap = true, silent = true })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()

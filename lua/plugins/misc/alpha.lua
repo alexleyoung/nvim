@@ -5,7 +5,7 @@ return {
   config = function()
     local alpha = require 'alpha'
     local dashboard = require 'alpha.themes.dashboard'
-    -- local utils = require 'utils'
+
     _Gopts = {
       position = 'center',
       hl = 'Type',
@@ -48,6 +48,7 @@ return {
       local new_header = load_random_header()
       if new_header then
         dashboard.config.layout[2] = new_header
+        require('alpha').redraw()
       else
         print 'No images inside header_imgs folder.'
       end
@@ -56,36 +57,25 @@ return {
     local header = load_random_header()
     if header then
       dashboard.config.layout[2] = header
-      -- vim.cmd 'AlphaRedraw'
+      require('alpha').redraw()
     else
       print 'No images inside header_imgs folder.'
     end
 
-    -- dashboard.section.tasks = {
-    --   type = 'text',
-    --   val = utils.get_today_tasks(),
-    --   opts = {
-    --     position = 'center',
-    --     hl = 'Comment',
-    --     width = 50,
-    --   },
-    -- }
-
     dashboard.section.buttons.val = {
-      -- dashboard.button('w', '🖌️ Change header image', function()
-      --   change_header()
-      -- end),
-      -- dashboard.button('c', '🛠️ Settings', ':e $HOME/.config/nvim/init.lua<CR>'),
-      -- dashboard.button('r', '⌛ Recent files', ':Telescope oldfiles <CR>'),
-      -- dashboard.button('t', '🖮  Practice typing with Typr ', ':Typr<CR>'),
-      -- dashboard.button('u', '🔌 Update plugins', '<cmd>Lazy update<CR>'),
+      dashboard.button('r', 'randomize image', function()
+        change_header()
+      end),
     }
 
     dashboard.config.layout = {
-      { type = 'padding', val = 3 },
+      { type = 'padding', val = 70 },
       header,
+      { type = 'padding', val = 5 },
+      dashboard.section.buttons,
       dashboard.section.footer,
     }
+
     vim.api.nvim_create_autocmd('User', {
       pattern = 'LazyVimStarted',
       desc = 'Add Alpha dashboard footer',

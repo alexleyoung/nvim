@@ -3,6 +3,7 @@
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.supermaven_enabled = false
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -45,3 +46,11 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<Leader>xf', '<cmd>source %<CR>')
 vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
 vim.keymap.set('v', '<Leader>x', ':lua<CR>')
+
+-- supermaven toggle
+vim.keymap.set('n', '<Leader>sm', function()
+  vim.g.supermaven_enabled = not vim.g.supermaven_enabled
+  vim.cmd 'SupermavenToggle'
+  local msg = vim.g.supermaven_enabled and 'Supermaven Enabled' or 'Supermaven Disabled'
+  vim.notify(msg, vim.log.levels.INFO)
+end, { desc = 'Toggle [S]uper[m]aven' })

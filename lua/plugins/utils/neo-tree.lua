@@ -14,10 +14,22 @@ return {
     { '<Leader>ee', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
+    window = {
+      position = 'right',
+      width = 25,
+      mappings = {
+        ['<Leader>ee'] = 'close_window',
+      },
+    },
     filesystem = {
-      window = {
-        mappings = {
-          ['<Leader>ee'] = 'close_window',
+      filtered_items = {
+        visible = true,
+        show_hidden_count = true,
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_by_name = {
+          '.git',
+          '.DS_Store',
         },
       },
     },
