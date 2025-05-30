@@ -49,11 +49,14 @@ return {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
+      defaults = {
+        layout_strategy = 'vertical',
+        layout_config = {
+          mirror = true,
+          prompt_position = 'top',
+          preview_cutoff = 10,
+        },
+      },
       vimgrep_arguments = {
         'rg',
         '--follow', -- Follow symbolic links
