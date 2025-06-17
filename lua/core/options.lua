@@ -46,7 +46,7 @@ set.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 set.list = true
-set.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+set.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 set.inccommand = 'split'
