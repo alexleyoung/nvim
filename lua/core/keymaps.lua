@@ -43,7 +43,8 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- remap ^ to !
-vim.keymap.set('n', '^', '!')
+vim.keymap.set("n", "!", "^", { noremap = true })
+vim.keymap.set('v', '!', '^')
 
 -- dev keymaps
 vim.keymap.set('n', '<Leader>xf', '<cmd>source %<CR>')
