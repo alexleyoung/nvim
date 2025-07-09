@@ -21,7 +21,7 @@ return {
     { 'nvim-telescope/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -59,13 +59,13 @@ return {
       },
       vimgrep_arguments = {
         'rg',
-        '--follow', -- Follow symbolic links
-        '--hidden', -- Search for hidden files
-        '--no-heading', -- Don't group matches by each file
+        '--follow',        -- Follow symbolic links
+        '--hidden',        -- Search for hidden files
+        '--no-heading',    -- Don't group matches by each file
         '--with-filename', -- Print the file path with the matched lines
-        '--line-number', -- Show line numbers
-        '--column', -- Show column numbers
-        '--smart-case', -- Smart case search
+        '--line-number',   -- Show line numbers
+        '--column',        -- Show column numbers
+        '--smart-case',    -- Smart case search
 
         -- Exclude some patterns from search
         '--glob=!**/.git/*',
@@ -137,9 +137,11 @@ return {
     vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = '[S]earch Recent Files ("o" bc vscode)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     -- theme selection
-    vim.keymap.set('n', '<leader>st', ':Telescope colorscheme<CR>', { desc = '[S]earch [T]hemes', noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>st', ':Telescope colorscheme<CR>',
+      { desc = '[S]earch [T]hemes', noremap = true, silent = true })
     -- flutter
-    vim.keymap.set('n', '<leader>fc', ':Telescope flutter commands<CR>', { desc = '[F]earch [C]ommands', noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>fc', ':Telescope flutter commands<CR>',
+      { desc = '[F]earch [C]ommands', noremap = true, silent = true })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
