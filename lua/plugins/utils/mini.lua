@@ -17,6 +17,18 @@ return {
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
+    require('mini.icons').setup()
+
+    require('mini.files').setup {
+      mappings = {
+        close = '<Leader>ee',
+        synchronize = '<Leader>w',
+      },
+    }
+    vim.keymap.set('n', '<Leader>ee', '<Cmd>:lua MiniFiles.open()<CR>')
+
+    require('mini.pairs').setup()
+
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
     --  and try some other statusline plugin
