@@ -36,4 +36,18 @@ return {
     },
   },
   { 'catppuccin/nvim', name = 'catppuccin', transparent = true, priority = 1000 },
+  {
+    'vague2k/vague.nvim',
+  },
+  {
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('bamboo').setup {
+        -- optional configuration here
+      }
+      require('bamboo').load()
+    end,
+  },
 }
