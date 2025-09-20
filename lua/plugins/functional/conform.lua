@@ -29,6 +29,7 @@ return {
       }
     end,
     formatters_by_ft = {
+      typst = { 'typstyle' },
       lua = { 'stylua' },
       python = { 'isort' },
       javascript = { 'biome', 'biome-organize-imports' },
