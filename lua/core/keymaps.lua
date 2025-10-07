@@ -1,4 +1,4 @@
---  See `:help vim.keymap.set()`
+-- See `:help vim.keymap.set()`
 -- vim.keymap.set({mode}, {lhs}, {rhs}, {opts})
 
 vim.g.mapleader = ' '
@@ -43,8 +43,12 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- remap ^ to !
-vim.keymap.set("n", "!", "^", { noremap = true })
+vim.keymap.set('n', '!', '^', { noremap = true })
 vim.keymap.set('v', '!', '^', { noremap = true })
+
+-- indent
+vim.keymap.set('v', '<Tab>', '>gv')
+vim.keymap.set('v', '<S-Tab>', '<gv')
 
 -- dev keymaps
 vim.keymap.set('n', '<Leader>xf', '<cmd>source %<CR>')
