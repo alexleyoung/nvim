@@ -11,3 +11,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Set tab settings for files',
+  pattern = { 'typst' },
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.opt.softtabstop = 2
+    vim.opt.expandtab = true
+    vim.opt.smartindent = true
+    vim.opt.autoindent = true
+    vim.opt.smarttab = true
+  end,
+})
