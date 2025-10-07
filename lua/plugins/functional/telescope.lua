@@ -21,7 +21,7 @@ return {
     { 'nvim-telescope/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
-    { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -59,13 +59,13 @@ return {
       },
       vimgrep_arguments = {
         'rg',
-        '--follow',        -- Follow symbolic links
-        '--hidden',        -- Search for hidden files
-        '--no-heading',    -- Don't group matches by each file
+        '--follow', -- Follow symbolic links
+        '--hidden', -- Search for hidden files
+        '--no-heading', -- Don't group matches by each file
         '--with-filename', -- Print the file path with the matched lines
-        '--line-number',   -- Show line numbers
-        '--column',        -- Show column numbers
-        '--smart-case',    -- Smart case search
+        '--line-number', -- Show line numbers
+        '--column', -- Show column numbers
+        '--smart-case', -- Smart case search
 
         -- Exclude some patterns from search
         '--glob=!**/.git/*',
@@ -129,19 +129,24 @@ return {
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = '[S]earch Recent Files ("o" bc vscode)' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    -- vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+    -- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+    -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     -- theme selection
-    vim.keymap.set('n', '<leader>st', ':Telescope colorscheme<CR>',
-      { desc = '[S]earch [T]hemes', noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>st', ':Telescope colorscheme<CR>', { desc = '[S]earch [T]hemes', noremap = true, silent = true })
     -- flutter
-    vim.keymap.set('n', '<leader>fc', ':Telescope flutter commands<CR>',
-      { desc = '[F]earch [C]ommands', noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>fc', ':Telescope flutter commands<CR>', { desc = '[F]earch [C]ommands', noremap = true, silent = true })
+    -- search notes
+    vim.keymap.set('n', '<leader>sn', function()
+      builtin.find_files { cwd = '~/Documents/notes/' }
+    end, { desc = '[S]earch [N]eovim files' })
+    -- Shortcut for searching your Neovim configuration files
+    -- vim.keymap.set('n', '<leader>sn', function()
+    --   builtin.find_files { cwd = vim.fn.stdpath 'config' }
+    -- end, { desc = '[S]earch [N]eovim files' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
@@ -160,10 +165,5 @@ return {
         prompt_title = 'Live Grep in Open Files',
       }
     end, { desc = '[S]earch [/] in Open Files' })
-
-    -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set('n', '<leader>sn', function()
-      builtin.find_files { cwd = vim.fn.stdpath 'config' }
-    end, { desc = '[S]earch [N]eovim files' })
   end,
 }
