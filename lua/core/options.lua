@@ -62,3 +62,5 @@ set.shiftwidth = 4
 set.tabstop = 4
 
 set.swapfile = false
+
+set.wrap = false
