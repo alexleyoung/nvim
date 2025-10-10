@@ -58,8 +58,9 @@ set.cursorline = true
 set.scrolloff = 10
 
 -- indent space
-set.shiftwidth = 4
-set.tabstop = 4
+set.shiftwidth = 2
+set.tabstop = 2
+set.expandtab = true
 
 set.swapfile = false
 
