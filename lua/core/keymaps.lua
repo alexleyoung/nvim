@@ -62,3 +62,41 @@ vim.keymap.set('n', '<Leader>sm', function()
   local msg = vim.g.supermaven_enabled and 'Supermaven Enabled' or 'Supermaven Disabled'
   vim.notify(msg, vim.log.levels.INFO)
 end, { desc = 'Toggle [S]uper[m]aven' })
+
+local function jot()
+  local filepath = vim.fn.expand '~/JOT.md'
+
+  local buf = vim.fn.bufnr(filepath, true)
+
+  local width = 80
+  local height = 2
+  local row = math.ceil((vim.o.lines - height) / 2)
+  local col = math.ceil((vim.o.columns - width) / 2)
+
+  local opts = {
+    relative = 'editor',
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    border = 'rounded',
+    style = 'minimal',
+  }
+
+  vim.api.nvim_open_win(buf, true, opts)
+
+  vim.api.nvim_set_option_value('bufhidden', 'hide', { buf = buf })
+  vim.api.nvim_set_option_value('swapfile', false, { buf = buf })
+
+  vim.keymap.set('n', 'q', function()
+    -- write changes
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    vim.fn.writefile(lines, filepath)
+
+    vim.api.nvim_buf_delete(buf, { force = true })
+
+    vim.notify('notes saved', vim.log.levels.INFO)
+  end, { buffer = buf, noremap = true, silent = true, desc = 'save quit notes buf' })
+end
+
+vim.keymap.set('n', '<leader>j', jot, { desc = 'jot notes' })
