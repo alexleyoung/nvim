@@ -100,3 +100,16 @@ local function jot()
 end
 
 vim.keymap.set('n', '<leader>j', jot, { desc = 'jot notes' })
+
+local function copyPath(relative)
+  local path = relative and vim.fn.expand '%' or vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+  print('copied: ' .. path)
+end
+-- copy path
+vim.keymap.set('n', '<Leader>cp', function()
+  copyPath(false)
+end)
+vim.keymap.set('n', '<Leader>cr', function()
+  copyPath(true)
+end)
