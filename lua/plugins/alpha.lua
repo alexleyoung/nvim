@@ -23,7 +23,7 @@ return {
 
     local function load_random_header()
       math.randomseed(os.time())
-      local header_folder = vim.fn.stdpath 'config' .. '/lua/plugins/misc/header_imgs/'
+      local header_folder = vim.fn.stdpath 'config' .. '/lua/plugins/headers/'
       local files = get_all_files_in_dir(header_folder)
 
       if #files == 0 then
@@ -32,14 +32,18 @@ return {
 
       local random_file = files[math.random(#files)]
       local relative_path = random_file:sub(#header_folder + 1)
-      local module_name = 'plugins.misc.header_imgs.' .. relative_path:gsub('/', '.'):gsub('\\', '.'):gsub('%.lua$', '')
+      print(relative_path)
+      local module_name = 'plugins.headers.' .. relative_path:gsub('/', '.'):gsub('\\', '.'):gsub('%.lua$', '')
 
       package.loaded[module_name] = nil
 
       local ok, module = pcall(require, module_name)
+      print(ok, module)
       if ok and module.header then
+        print('returning header: ', module.header)
         return module.header
       else
+        print('Failed to load header: ' .. module_name)
         return nil
       end
     end
@@ -50,7 +54,7 @@ return {
         dashboard.config.layout[2] = new_header
         require('alpha').redraw()
       else
-        print 'No images inside header_imgs folder.'
+        print 'No images inside headers folder.'
       end
     end
 
@@ -59,7 +63,7 @@ return {
       dashboard.config.layout[2] = header
       require('alpha').redraw()
     else
-      print 'No images inside header_imgs folder.'
+      print 'No images inside headers folder.'
     end
 
     dashboard.section.buttons.val = {
@@ -69,25 +73,25 @@ return {
     }
 
     dashboard.config.layout = {
-      { type = 'padding', val = 70 },
+      -- { type = 'padding', val = 70 },
       header,
-      { type = 'padding', val = 5 },
-      dashboard.section.buttons,
-      dashboard.section.footer,
+      -- { type = 'padding', val = 5 },
+      -- dashboard.section.buttons,
+      -- dashboard.section.footer,
     }
 
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'LazyVimStarted',
-      desc = 'Add Alpha dashboard footer',
-      once = true,
-      callback = function()
-        local stats = require('lazy').stats()
-        local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
-        dashboard.section.footer.val = { ' ', ' ', ' ', ' Loaded ' .. stats.count .. ' plugins  in ' .. ms .. ' ms ' }
-        dashboard.section.header.opts.hl = 'DashboardFooter'
-        pcall(vim.cmd.AlphaRedraw)
-      end,
-    })
+    -- vim.api.nvim_create_autocmd('User', {
+    --   pattern = 'LazyVimStarted',
+    --   desc = 'Add Alpha dashboard footer',
+    --   once = true,
+    --   callback = function()
+    --     local stats = require('lazy').stats()
+    --     local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+    --     dashboard.section.footer.val = { ' ', ' ', ' ', ' Loaded ' .. stats.count .. ' plugins  in ' .. ms .. ' ms ' }
+    --     dashboard.section.header.opts.hl = 'DashboardFooter'
+    --     pcall(vim.cmd.AlphaRedraw)
+    --   end,
+    -- })
 
     dashboard.opts.opts.noautocmd = true
     alpha.setup(dashboard.opts)

@@ -13,9 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 -- load plugins
 require('lazy').setup {
   { import = 'plugins' },
-  { import = 'plugins.functional' },
-  { import = 'plugins.utils' },
-  { import = 'plugins.misc' },
+  { import = 'plugins.core' },
 }
 
 -- load theme
@@ -28,21 +26,21 @@ if vim.fn.filereadable(theme_file) == 1 then
 end
 
 -- force transparency
-vim.cmd [[
-  highlight Normal guibg=none
-  highlight NormalNC guibg=none
-  highlight SignColumn guibg=none
-  highlight LineNr guibg=none
-  highlight FoldColumn guibg=none
-  highlight VertSplit guibg=none
-
-  highlight GitSignsAdd guibg=none
-  highlight GitSignsChange guibg=none
-  highlight GitSignsDelete guibg=none
-
-  highlight NeoTreeNormal guibg=none
-  highlight NeoTreeNormalNC guibg=none
-  highlight NeoTreeEndOfBuffer guibg=none
-  highlight NeoTreeWinSeparator guibg=none
-  highlight NeoTreeFloatBorder guibg=none
-]]
+-- vim.cmd [[
+--   highlight Normal guibg=none
+--   highlight NormalNC guibg=none
+--   highlight SignColumn guibg=none
+--   highlight LineNr guibg=none
+--   highlight FoldColumn guibg=none
+--   highlight VertSplit guibg=none
+--
+--   highlight GitSignsAdd guibg=none
+--   highlight GitSignsChange guibg=none
+--   highlight GitSignsDelete guibg=none
+--
+--   highlight NeoTreeNormal guibg=none
+--   highlight NeoTreeNormalNC guibg=none
+--   highlight NeoTreeEndOfBuffer guibg=none
+--   highlight NeoTreeWinSeparator guibg=none
+--   highlight NeoTreeFloatBorder guibg=none
+-- ]]
