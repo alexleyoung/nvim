@@ -32,15 +32,12 @@ return {
 
       local random_file = files[math.random(#files)]
       local relative_path = random_file:sub(#header_folder + 1)
-      print(relative_path)
       local module_name = 'plugins.headers.' .. relative_path:gsub('/', '.'):gsub('\\', '.'):gsub('%.lua$', '')
 
       package.loaded[module_name] = nil
 
       local ok, module = pcall(require, module_name)
-      print(ok, module)
       if ok and module.header then
-        print('returning header: ', module.header)
         return module.header
       else
         print('Failed to load header: ' .. module_name)

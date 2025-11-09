@@ -19,13 +19,13 @@ return {
 
     require('mini.icons').setup()
 
-    require('mini.files').setup {
-      mappings = {
-        close = '<Leader>ee',
-        synchronize = '<Leader>w',
-      },
-    }
-    vim.keymap.set('n', '<Leader>ee', '<Cmd>:lua MiniFiles.open()<CR>')
+    -- require('mini.files').setup {
+    --   mappings = {
+    --     close = '<Leader>ee',
+    --     synchronize = '<Leader>w',
+    --   },
+    -- }
+    -- vim.keymap.set('n', '<Leader>ee', '<Cmd>:lua MiniFiles.open()<CR>')
 
     require('mini.pairs').setup()
 
