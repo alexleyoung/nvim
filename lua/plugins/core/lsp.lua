@@ -6,7 +6,13 @@ return {
     -- Mason must be loaded before its dependents so we need to set it up here.
     -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
     { 'williamboman/mason.nvim', version = '^1.0.0', opts = {} },
-    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
+    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0', opts = {
+      automatic_enable = {
+        exclude = {
+          'jdtls',
+        },
+      },
+    } },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     {
       'folke/lazydev.nvim',
