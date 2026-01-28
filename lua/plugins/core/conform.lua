@@ -45,8 +45,6 @@ return {
       clang_format = {
         prepend_args = { '--style=file', '--fallback-style=LLVM' },
       },
-      shfmt = {
-        prepend_args = { '-i', '4' },
       },
     },
   },
