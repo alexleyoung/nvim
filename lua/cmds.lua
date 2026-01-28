@@ -15,20 +15,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'typst' },
   callback = function()
-    vim.opt.tabstop = 2
-    vim.opt.shiftwidth = 2
-    vim.opt.softtabstop = 2
+    vim.opt.tabstop = 4
+    vim.opt.shiftwidth = 4
+    vim.opt.softtabstop = 4
     vim.opt.expandtab = true
     vim.opt.smartindent = true
     vim.opt.autoindent = true
     vim.opt.smarttab = true
   end,
 })
-
-
--- mini plugins
---   vim.notify(msg, vim.log.levels.INFO)
--- end
 
 function Jot()
   local filepath = vim.fn.expand '~/JOT.md'
