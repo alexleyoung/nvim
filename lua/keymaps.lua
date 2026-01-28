@@ -68,3 +68,7 @@ end)
 vim.keymap.set('n', '<Leader>cr', function()
   CopyPath(true)
 end)
+
+-- typst
+vim.keymap.set('n', '<Leader>tp', '<cmd>TypstPreview<CR>')
+vim.keymap.set('n', '<Leader>tps', '<cmd>TypstPreviewStop<CR>')
