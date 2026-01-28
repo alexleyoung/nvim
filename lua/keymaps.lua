@@ -55,9 +55,6 @@ vim.keymap.set('n', '<Leader>xf', '<cmd>source %<CR>')
 vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
 vim.keymap.set('v', '<Leader>x', ':lua<CR>')
 
--- supermaven toggle
-vim.keymap.set('n', '<Leader>sm', SupermavenToggle, { desc = 'Toggle [S]uper[m]aven' })
-
 -- jot
 vim.keymap.set('n', '<leader>j', Jot, { desc = 'jot notes' })
 

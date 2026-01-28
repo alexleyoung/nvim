@@ -27,8 +27,8 @@ vim.api.nvim_create_autocmd('FileType', {
 
 
 -- mini plugins
-  vim.notify(msg, vim.log.levels.INFO)
-end
+--   vim.notify(msg, vim.log.levels.INFO)
+-- end
 
 function Jot()
   local filepath = vim.fn.expand '~/JOT.md'
