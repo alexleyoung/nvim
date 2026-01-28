@@ -6,13 +6,7 @@ return {
     -- Mason must be loaded before its dependents so we need to set it up here.
     -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
     { 'williamboman/mason.nvim', version = '^1.0.0', opts = {} },
-    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0', opts = {
-      automatic_enable = {
-        exclude = {
-          'jdtls',
-        },
-      },
-    } },
+    { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     {
       'folke/lazydev.nvim',
@@ -153,14 +147,14 @@ return {
     })
 
     -- Change diagnostic symbols in the sign column (gutter)
-    -- if vim.g.have_nerd_font then
-    --   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-    --   local diagnostic_signs = {}
-    --   for type, icon in pairs(signs) do
-    --     diagnostic_signs[vim.diagnostic.severity[type]] = icon
-    --   end
-    --   vim.diagnostic.config { signs = { text = diagnostic_signs } }
-    -- end
+    if vim.g.have_nerd_font then
+      local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+      local diagnostic_signs = {}
+      for type, icon in pairs(signs) do
+        diagnostic_signs[vim.diagnostic.severity[type]] = icon
+      end
+      vim.diagnostic.config { signs = { text = diagnostic_signs } }
+    end
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -240,6 +234,17 @@ return {
             diagnostics = {
               globals = { 'vim' }, -- Tell LSP that `vim` is a global
             },
+          },
+        },
+      },
+    }
+
+    local lspconfig = require 'lspconfig'
+    lspconfig.sourcekit.setup {
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true,
           },
         },
       },
