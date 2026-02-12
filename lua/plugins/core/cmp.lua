@@ -52,10 +52,6 @@ return {
           accept_word = '<C-j>',
         },
         -- ignore_filetypes = { cpp = true }, -- or { "cpp", }
-        -- color = {
-        --   suggestion_color = '#ffffff',
-        --   cterm = 244,
-        -- },
         log_level = 'info', -- set to "off" to disable logging completely
         disable_inline_completion = false, -- disables inline completion for use with cmp
         disable_keymaps = false, -- disables built in keymaps for more manual control
@@ -124,7 +120,8 @@ return {
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
-        sources = {
+        sources = cmp.config.sources {
+          { name = 'supermaven' },
           {
             name = 'lazydev',
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
