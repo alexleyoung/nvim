@@ -65,3 +65,5 @@ set.expandtab = true
 set.swapfile = false
 
 set.wrap = false
+
+set.textwidth = 120
