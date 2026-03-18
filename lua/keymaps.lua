@@ -3,14 +3,16 @@
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.supermaven_enabled = false
+vim.g.supermaven_disabled = true
+
+local map = vim.keymap.set
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -18,54 +20,58 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- map leader+w to save current file in normal mode
-vim.keymap.set('n', '<Leader>w', ':write<CR>', { noremap = true, silent = true })
+map('n', '<Leader>w', ':write<CR>', { noremap = true, silent = true })
 
 -- recenter on C-d and C-u
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
 
 -- remap ^ to !
-vim.keymap.set('n', '!', '^', { noremap = true })
-vim.keymap.set('v', '!', '^', { noremap = true })
+map('n', '!', '^', { noremap = true })
+map('v', '!', '^', { noremap = true })
 
 -- indent
-vim.keymap.set('v', '<Tab>', '>gv')
-vim.keymap.set('v', '<S-Tab>', '<gv')
+map('v', '<Tab>', '>gv')
+map('v', '<S-Tab>', '<gv')
 
 -- dev keymaps
-vim.keymap.set('n', '<Leader>xf', '<cmd>source %<CR>')
-vim.keymap.set('n', '<Leader>xx', ':.lua<CR>')
-vim.keymap.set('v', '<Leader>x', ':lua<CR>')
+map('n', '<Leader>xf', '<cmd>source %<CR>')
+map('n', '<Leader>xx', ':.lua<CR>')
+map('v', '<Leader>x', ':lua<CR>')
 
 -- jot
-vim.keymap.set('n', '<leader>j', Jot, { desc = 'jot notes' })
+map('n', '<leader>j', Jot, { desc = 'jot notes' })
 
 -- copy path
-vim.keymap.set('n', '<Leader>cp', function()
+map('n', '<Leader>cp', function()
   CopyPath(false)
 end)
-vim.keymap.set('n', '<Leader>cr', function()
+map('n', '<Leader>cr', function()
   CopyPath(true)
 end)
 
 -- typst
-vim.keymap.set('n', '<Leader>tp', '<cmd>TypstPreview<CR>')
-vim.keymap.set('n', '<Leader>tps', '<cmd>TypstPreviewStop<CR>')
+map('n', '<Leader>tp', '<cmd>TypstPreview<CR>')
+map('n', '<Leader>tps', '<cmd>TypstPreviewStop<CR>')
+
+-- compile mode
+map('n', '<Leader>R', ':Compile<CR>')
+map('n', '<Leader>r', ':Recompile<CR>')
