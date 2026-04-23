@@ -31,7 +31,7 @@ return {
     formatters_by_ft = {
       typst = { 'typstyle' },
       lua = { 'stylua' },
-      python = { 'isort' },
+      python = { 'ruff_fix', 'ruff_format' },
       javascript = { 'biome', 'biome-organize-imports', 'prettier' },
       javascriptreact = { 'biome', 'biome-organize-imports', 'prettier' },
       typescript = { 'biome', 'biome-organize-imports', 'prettier' },
