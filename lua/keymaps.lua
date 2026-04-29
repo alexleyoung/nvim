@@ -75,3 +75,7 @@ map('n', '<Leader>tps', '<cmd>TypstPreviewStop<CR>')
 -- compile mode
 map('n', '<Leader>R', ':Compile<CR>')
 map('n', '<Leader>r', ':Recompile<CR>')
+
+-- lsp
+map('n', '<Leader>lspi', '<cmd>LspInfo<CR>', { desc = '[L]SP [I]nfo' })
+map('n', '<Leader>lspr', '<cmd>LspRestart<CR>', { desc = '[L]SP [R]estart' })
