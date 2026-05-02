@@ -195,7 +195,6 @@ return {
         },
         cmd = {
           'clangd',
-          '--std=17',
           '--background-index',
           '--clang-tidy',
           '--header-insertion=iwyu',
