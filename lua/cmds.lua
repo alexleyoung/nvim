@@ -30,10 +30,11 @@ function Jot()
 
   local buf = vim.fn.bufnr(filepath, true)
 
-  local width = 80
-  local height = 2
-  local row = math.ceil((vim.o.lines - height) / 2)
-  local col = math.ceil((vim.o.columns - width) / 2)
+  local padding = 2
+  local width = vim.o.columns - padding * 2
+  local height = vim.o.lines - padding * 2
+  local row = padding
+  local col = padding
 
   local opts = {
     relative = 'editor',

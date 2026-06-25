@@ -77,5 +77,5 @@ map('n', '<Leader>R', ':Compile<CR>')
 map('n', '<Leader>r', ':Recompile<CR>')
 
 -- lsp
-map('n', '<Leader>lspi', '<cmd>LspInfo<CR>', { desc = '[L]SP [I]nfo' })
-map('n', '<Leader>lspr', '<cmd>LspRestart<CR>', { desc = '[L]SP [R]estart' })
+map('n', '<Leader>lsi', '<cmd>LspInfo<CR>', { desc = '[L]SP [I]nfo' })
+map('n', '<Leader>lsr', '<cmd>LspRestart<CR>', { desc = '[L]SP [R]estart' })
