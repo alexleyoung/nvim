@@ -23,7 +23,9 @@ return {
   config = function()
     local treesitter = require 'nvim-treesitter'
 
-    treesitter.setup()
+    treesitter.setup {
+      install_dir = vim.fn.stdpath 'data' .. '/site',
+    }
     treesitter.install(parsers)
 
     local group = vim.api.nvim_create_augroup('treesitter-start', { clear = true })
